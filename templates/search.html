@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block head %}
+{{ super() }}
+{% endblock head %}
+{% block title %}Search{% endblock title %}
+
+{% block content %}
+{{ super() }}
+<div class="container">
+    <h1>搜索结果</h1>
+    {% if result %}
+    {% for w in result %}
+    <div class="wordlist-item">
+        <a class="word" href="/word/{{ w.id }}">{{ w.word }}</a>
+        <a class="button" style="margin-left: 1%;" href="/word/edit/{{ w.id }}">编辑</a>
+        <button class="button-warn" style="margin-left: 1%; cursor: pointer;"
+            onclick="deleteWord('/word/delete/{{ w.id }}')">删除</>
+    </div>
+    {% endfor %}
+    {% else %}
+    似乎没有结果......
+    {% endif %}
+
+</div>
+
+
+<script>
+    function deleteWord(url) {
+        if (confirm("真的要删除吗？")) {
+            location = url; // window.location
+        }
+    }
+</script>
+
+{% endblock content %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block head %}
+{{ super() }}
+{% endblock head %}
+
+{% block title %}
+Success!
+{% endblock title %}
+
+{% block content %}
+{{ super() }}
+<div class="container">
+    <h1 style="color: #0060df;">操作成功了！</h1>
+    <p>{{ message }}</p>
+</div>
+{% endblock content %}

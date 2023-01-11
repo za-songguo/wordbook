@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Print - Wordbook</title>
+    <style>
+        @media print {
+            .tip {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <p class="tip" style="color: red;"><b>提示：浏览器按<kbd>Ctrl</kbd>+<kbd>P</kbd>打印</b><br />单词按照字母顺序排序</p>
+    <h1>Wordbook</h1>
+
+    {% for w in words %}
+    <h2 class="word">{{ w.word }}</h2>
+    <p><b>释义</b></p>
+    <p>{{ w.meaning }}</p>
+
+    {% if w.usage %}
+    <p><b>用法</b></p>
+    <p>{{ w.usage }}</p>
+    {% endif %}
+
+    <i class="date">{{ w.date }}</i>
+    {% endfor %}
+</body>
+
+</html>

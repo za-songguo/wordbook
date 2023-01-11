@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block head %}
+{{ super() }}
+{% endblock head %}
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+{{ super() }}
+<div class="container">
+    <h1>单词</h1>
+    <div style="margin-top: 1%; margin-bottom: 2%;">
+        <a href="/word/new" class="button" style="margin-top: 1%;">新增</a>
+        <a href="/print" class="button" style="margin-top: 1%;">打印</a>
+        <form action="/word/search" method="get"> <input type="text" name="query" placeholder="输入一些东西......"
+                style="display: inline-block; margin-top: 1.5%; margin-bottom: 0.3%; height: 32px; outline: none;" />
+            <button type="submit" class="button">搜索</button>
+        </form>
+
+    </div>
+    {% for w in words %}
+    <div class="wordlist-item">
+        <a class="word" href="/word/{{ w.id }}">{{ w.word }}</a>
+        <a class="button" style="margin-left: 1%;" href="/word/edit/{{ w.id }}">编辑</a>
+        <button class="button-warn" style="margin-left: 1%; cursor: pointer;"
+            onclick="deleteWord('/word/delete/{{ w.id }}')">删除</>
+    </div>
+    {% endfor %}
+</div>
+
+
+<script>
+    function deleteWord(url) {
+        if (confirm("真的要删除吗？")) {
+            location = url; // window.location
+        }
+    }
+</script>
+
+{% endblock content %}
